@@ -13,9 +13,9 @@ export const tasksSlice = createSlice({
             state.inputText = action.payload
         },
         addTask: (state, action) => {
-            if(state.inputText.trim()){
-                const maxId = state.tasks.reduce((max, task) => Math.max(max, task.id), 0);
-                state.tasks.push({id: maxId + 1, text: state.inputText})
+            if (state.inputText.trim()) {
+                const maxId = state.tasks.length ? Math.max(...state.tasks.map(task => task.id)) + 1 : 1;
+                state.tasks.push({ id: maxId, text: state.inputText });
             }
             state.inputText = ''
         },
